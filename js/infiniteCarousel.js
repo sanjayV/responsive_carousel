@@ -1,16 +1,18 @@
 var InfiniteCarousel = function(options) {
-    this.baseClass = options.baseClass;
-    this.slideSpeed = (options.slideSpeed)?options.slideSpeed:500;
+    //Default values
+    this.baseClass = "";
+    this.slideSpeed = 500;
     this.slideCount = 1;
     this.contentWidth = '';
     this.totalContent = '';
     this.slidePosTemp = 0;
     this.carouselUlWidth = 0;
     this.flag = true;
+    this.moveImage = 0;
 
-    if (typeof options.moveImage != 'undefined')
-        this.moveImage = options.moveImage;
-
+    //Extend options
+    $.extend(this, options);
+    
     //init code
     this.setCarouselWidth();
     this.getSlideCount();
@@ -67,7 +69,7 @@ InfiniteCarousel.prototype = {
     addEvent: function() {
         var _this = this;
 
-        //next link click        
+        //next link click
         $(document).on('click', _this.baseClass + ' .next', function(e) {
             e.preventDefault();
 
@@ -162,6 +164,12 @@ InfiniteCarousel.prototype = {
 };
 
 $(function() {
-    var infiniteCarousel = new InfiniteCarousel({baseClass: '.infinite-carousel'});
-    var infiniteCarousel1 = new InfiniteCarousel({baseClass: '.infinite-carousel1', moveImage: 1, slideSpeed: 1000});
+    var infiniteCarousel = new InfiniteCarousel({
+        baseClass: '.infinite-carousel'
+    });
+    var infiniteCarousel1 = new InfiniteCarousel({
+        baseClass: '.infinite-carousel1',
+        moveImage: 3,
+        slideSpeed: 1000
+    });
 });
